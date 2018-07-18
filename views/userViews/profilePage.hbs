@@ -1,0 +1,28 @@
+<h1>PROFILE</h1>
+
+
+{{!-- videos --}}
+
+
+<a href="/profile/update">edit user info</a>
+<br><br>
+<a href="/video/create">add video</a>
+<br><br>
+<a href="/video/update">edit videos</a>
+
+<br><br>
+
+{{#each listOfVideos}}
+
+<div>
+
+<p>{{this.title}} </p>
+
+</div>
+
+<hr>
+
+
+{{/each}}
+
+

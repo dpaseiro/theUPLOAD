@@ -2,9 +2,24 @@
 <html>
   <head>
     <title>{{title}}</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+
+    <div class="topnav">
+     <a class="active" href="/">Home</a>
+     <a href="/aboutUs">About</a>
+     <a href="/contactUs">Contact</a>
+     <a href="/profile">Your profile</a>
+     <a href="#">Log out</a>
+     <input type="text" placeholder="Search..">
+    </div>
 
     {{{body}}}
 

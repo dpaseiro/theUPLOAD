@@ -1,0 +1,24 @@
+<h2>edit profile</h2>
+
+<form action="/profile/update" method="post">
+
+    <label for="name">name</label>
+    <input type="text" name="name" id="name">
+    
+    <br><br>
+    <label for="about">about</label>
+    <input type="text" name="about" id="about">
+<br><br>
+    <label for="video">videos</label>
+    
+    {{#each allTheVideos}}
+
+<a href="#">add video</a>
+
+<a href="#">edit video</a>
+
+<a href="#">remove video</a>
+
+    {{/each}}
+
+</form>
