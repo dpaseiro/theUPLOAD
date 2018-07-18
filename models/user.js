@@ -10,6 +10,7 @@ const userSchema = new Schema({
     password: String,
     name:   String,
     about: String,
+    image: String,
     // array of URLs
     videos: [{type: Schema.Types.ObjectId}]},
     {timestamps: true}

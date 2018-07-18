@@ -4,9 +4,12 @@ const User          = require('../models/user');
 const bcrypt        = require('bcryptjs');
 const passport      = require('passport');
 const ensureLogin   = require('connect-ensure-login');
+const multer        = require('multer');
+
+const uploadCloud   = require('../config/cloudinary');
 
 // PROFILE
-profileRouter.get('/profile', (req, res, next)=>{
+profileRouter.get('/profile', ensureLogin.ensureLoggedIn(), (req, res, next)=>{
     res.render('userViews/profilePage', {theUser: req.user})
 });
 
@@ -16,18 +19,19 @@ profileRouter.get('/profile/update', (req, res, next)=>{
     res.render('../views/userViews/editProfile.hbs', {theUser: req.user})
 });
 
-profileRouter.post('/profile/update', (req, res, next)=>{
-    const newVideo = new Video({
-        title: req.body.title,
-        description: req.body.description
+profileRouter.post('/profile/update', uploadCloud.single('photo'), (req, res, next)=>{
+    console.log(req.file)
+    User.findByIdAndUpdate(req.user._id, {
+        name: req.body.name,
+        about: req.body.about,
+        image: req.file.url
     })
-    newVideo.save()
     .then((response)=>{
-        res.redirect('../views/userViews/editProfile.hbs');
+        res.redirect('/profile');
     })
     .catch((err)=>{
         next(err);
-    })
+    });
 });
 
 
@@ -47,7 +51,7 @@ profileRouter.post('/video/create', (req, res, next)=>{
     })
     .catch((err)=>{
         next(err);
-    })
+    });
 });
 
 
@@ -67,7 +71,7 @@ profileRouter.post('/video/update', (req, res, next)=>{
     })
     .catch((err)=>{
         next(err);
-    })
+    });
 });
 
 
@@ -79,8 +83,8 @@ profileRouter.post('/video/:id/delete', (req, res, next)=>{
     })
     .catch((err)=>{
         next(err);
-    })
-})
+    });
+});
 
 
 

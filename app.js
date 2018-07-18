@@ -56,7 +56,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 app.use(session({
-  secret: "our-passport-local-strategy-app",
+  secret: "youtube-thing",
   resave: true,
   saveUninitialized: true
 }));
@@ -69,7 +69,7 @@ passport.serializeUser((user, cb)=>{
   cb(null, user._id)
 })
 
-passport.deserializeUser((IDBCursor, cb)=>{
+passport.deserializeUser((id, cb)=>{
   User.findById(id, (err, user)=>{
     if(err) {return cb(err);}
     cb(null, user)
@@ -79,27 +79,31 @@ passport.deserializeUser((IDBCursor, cb)=>{
 app.use(flash());
 
 passport.use(new LocalStrategy((username, password, next) => {
+  console.log("using local strategy")
   User.findOne({ username }, (err, user) => {
     if (err) {
+      console.log("error in DB error error errorr")
       return next(err);
     }
     if (!user) {
+      console.log("NO USR WITH THAT USERNAME")
       return next(null, false, { message: "Incorrect username" });
     }
     if (!bcrypt.compareSync(password, user.password)) {
+      console.log("its the wrong password")
       return next(null, false, { message: "Incorrect password" });
     }
-
+    console.log("all the way to the end of local stragey", user)
     return next(null, user);
   });
 }));
 
-app.use ((req, res, next)=>{
-  if(req.user){
-    res.locals.user = req.user; // !!!!!!
-  }
-  next();
- })
+// app.use ((req, res, next)=>{
+//   if(req.user){
+//     res.locals.user = req.user; // !!!!!!
+//   }
+//   next();
+//  })
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -112,5 +116,8 @@ app.use('/', userRoutes);
 
 const profileRoutes = require('./routes/profileRoutes');
 app.use('/', profileRoutes);
+
+const navRoutes = require('./routes/navRoutes');
+app.use('/', navRoutes);
 
 module.exports = app;
