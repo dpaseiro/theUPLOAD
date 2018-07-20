@@ -1,2 +1,54 @@
-<h2>video page</h2>
+<h2></h2>
+
+
+{{!-- {{Video._id}} --}}
+
+<div class="video-margin">
+{{Video.name}}
+    <video class="video-size" controls>
+        <source src="{{theVideo.url}}">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="center">
+        <form method="post" action="/video/{{theVideo.id}}/comment/create">
+    </div>
+    
+            <label for="comments" class="font">Leave a comment</label>    
+            <textarea id="comments" type="text" name="vidComment" class="comment-box"></textarea>
+            <button type="submit"> Save </button>
+        </form>
+    </div>
+
+<div class="video-margin">
+
+    <p class="font-com-title">Comments</p>
+    <hr>
+</div> 
+    </div>
+
+<div class="video-margin">
+    
+    {{#each theComments}}
+    
+
+    <div class="comment-list">
+<div class="white-box">
+
+    <p class="com-user comment-user bold">
+    {{this.username}}
+    </p>
+
+        <div class="clear"></div>
+    <p class=".com-con message comment-post">
+    {{this.comment}}
+</div>
+    </p>
+    <br><br>
+
+    </div>
+
+    {{/each}}
+</div>
+</div>
 

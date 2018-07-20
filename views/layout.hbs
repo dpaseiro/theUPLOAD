@@ -12,13 +12,23 @@
   </head>
   <body>
 
-    <div class="topnav">
-     <a class="active" href="/">Home</a>
-     <a href="/aboutUs">About</a>
-     <a href="/contactUs">Contact</a>
-     <a href="/profile">Your profile</a>
-     <a href="/logout">Log out</a>
-     <input type="text" placeholder="Search..">
+    <div class="topnav navbar sticky-top navbar-dark bg-dark">
+
+      {{!-- Make home an image --}}
+     <a class="active" href="/">
+     <div class="white-box">
+      <img class="nav-logo" src="../images/video.png" alt="home-logo">
+     </div>
+     </a>
+     <a class="font-color font-a" href="/aboutUs">about</a>
+     <a class="font-color font-a" href="/contactUs">contact</a>
+     <a class="font-color font-a" href="/profile">your profile</a>
+     <a class="font-color font-a" href="/logout">log out</a>
+     <form method="get" action="/search">
+       <label for="search-input"></label>
+      <input id="search-input" type="text" placeholder="Search.." name="searchTerm">
+      <button type="submit">Search</button>
+     </form>
     </div>
 
     {{{body}}}

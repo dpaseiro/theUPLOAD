@@ -1,17 +1,17 @@
 <h2>edit profile</h2>
 
-<form action="/profile/update" method="post" enctype="multipart/form-data">
+<form action="/profile/{{theUser._id}}/update" method="post" enctype="multipart/form-data">
 
     <label for="name">name</label>
-    <input type="text" name="name" id="name">
+    <input type="text" name="name" id="name" value="{{theUser.name}}">
     
     {{!-- profile image --}}
-    <input type="file" name="photo">
+    <input type="file" name="photo" value="{{theUser.image}}">
 
 
     <br><br>
     <label for="about">about</label>
-    <input type="text" name="about" id="about">
+    <textarea name="about" cols="30" rows="10" value="{{theUser.about}}">{{theUser.about}}</textarea>
 <br><br>
     <label for="video">videos</label>
     
@@ -27,5 +27,7 @@
 
 <br><br>
 
+{{!-- <a href="/profile"> --}}
 <button type="submit"> done </button>
+{{!-- </a> --}}
 </form>

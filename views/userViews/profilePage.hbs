@@ -1,34 +1,65 @@
-<h1>PROFILE</h1>
+
+
+{{!-- <div class="container">
+    <div class="row row-centered">
+
+
+        <div class="col-sm-12 col-centered"> --}}
 
 
 {{!-- videos --}}
-
-<img src="{{theUser.image}}" alt="">
+<div class="container">
+    <div class="row col--6">
+    
+    <div class="margin-top">
+        <h2>
+            {{theUser.username}}
+        </h2>
 <br><br>
-{{theUser.username}}
-
-<br><br>
-
-{{theUser.name}}
-{{theUser.about}}
+<div class="white-box centered">
+<img class=" avatar-size" src="{{theUser.image}}" alt=""> 
+</div>
 
 
-<a href="/profile/update">edit user info</a>
-<br><br>
-<a href="/video/create">add video</a>
-<br><br>
-<a href="/video/update">edit videos</a>
 
 <br><br>
 
-{{#each listOfVideos}}
+<div class="">
+    <p class="bold">Name:</p>
+    {{theUser.name}}
+    <br>
+</div>
 
-<div>
+<div class="white-box margin-top-10">
+    <p><b>Bio:</b>  
+    <br>
+    {{theUser.about}}
+    </p>
+</div>
+<br><br><br>
 
-<p>{{this.title}} </p>
+
+
+
+<a href="/profile/{{theUser._id}}/update" class="myButton">edit user info</a>
+<br><br>
+<a href="/video/create" class="myButton">add video</a>
+<br><br>
+{{!-- <a href="/video/update">edit videos</a> --}}
+
+</div>
+</div>
+<br><br>
 
 </div>
 
+{{!-- Display list of all users videos --}}
+{{#each videosFromDB}}
+<p class="font-color-2">
+    <a href="/video/{{this._id}}">
+        {{this.title}} 
+    </a>
+</p>
 <hr>
 
 

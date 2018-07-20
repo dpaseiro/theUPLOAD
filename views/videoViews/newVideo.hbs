@@ -1,8 +1,8 @@
 <h2>new video</h2>
 
-<form action="/video/create" method="post">
+<form action="/video/create" method="post" enctype="multipart/form-data">
 
-    <label for="video">upload a view</label>
+    <label for="video">upload a video</label>
     <input type="file" id="video" name="video">
 <br><br>
     <label for="title">video title</label>
@@ -10,7 +10,10 @@
 <br><br>
     <label>description</label>
     <textarea name="content" cols="30" rows="10"></textarea>
-    <br><br>
+<br><br>
+
+    {{!-- <a href="/profile"> --}}
     <button type="submit">Post It</button>
+    {{!-- </a> --}}
 
 </form>
